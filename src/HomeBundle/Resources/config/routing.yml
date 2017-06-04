@@ -1,0 +1,11 @@
+home:
+    path:     /
+    defaults: { _controller: HomeBundle:Home:welcome }
+
+index:
+    resource: "routes/index.yml"
+    prefix:   /index
+            
+administration:
+    resource: "routes/administration.yml"
+    prefix:   /administration

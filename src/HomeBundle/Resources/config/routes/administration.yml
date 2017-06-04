@@ -1,0 +1,3 @@
+administration_summary:
+    path:     /summary
+    defaults: { _controller: HomeBundle:Administration:summary }

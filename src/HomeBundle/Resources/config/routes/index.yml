@@ -1,0 +1,36 @@
+#NO SE HA UTILIZADO LA SIGUIENTE RUTA
+index_logIn:
+    path:     /logIn
+    defaults: { _controller: HomeBundle:Index:logIn }
+    
+index_sigIn:
+    path:     /sigIn
+    defaults: { _controller: HomeBundle:Index:sigIn }
+    
+matriz_costos_adicionarTipoPrenda:
+    path:     /adicionarTipoPrenda
+    defaults: { _controller: HomeBundle:Index:adicionarTipoPrenda }
+    
+index_music:
+    path:     /music
+    defaults: { _controller: HomeBundle:Index:music }
+    
+index_music22:
+    path:     /music22
+    defaults: { _controller: HomeBundle:Procesar:music22 }
+    methods: POST
+    
+index_music23:
+    path:     /music23
+    defaults: { _controller: HomeBundle:Index:music23 }
+    
+index_music24:
+    path:     /music24
+    defaults: { _controller: HomeBundle:Procesar:music24 }
+    methods: POST
+    
+index_video:
+    path:     /video
+    defaults: { _controller: HomeBundle:Procesar:video }
+    methods: POST
+    

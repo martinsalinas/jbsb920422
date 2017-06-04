@@ -1,0 +1,123 @@
+<?php
+
+namespace HomeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Prenda
+ *
+ * @ORM\Table(name="prenda")
+ * @ORM\Entity(repositoryClass="HomeBundle\Repository\PrendaRepository")
+ */
+class Prenda {
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TipoPrenda", inversedBy="prenda")
+     * @ORM\JoinColumn(name="tipo_prenda_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    protected $tipoPrenda;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="text")
+     */
+    private $descripcion;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     * @return Prenda
+     */
+    public function setNombre($nombre) {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string 
+     */
+    public function getNombre() {
+        return $this->nombre;
+    }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     * @return Prenda
+     */
+    public function setDescripcion($descripcion) {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string 
+     */
+    public function getDescripcion() {
+        return $this->descripcion;
+    }
+
+
+
+
+    /**
+     * Get tipoPrenda
+     *
+     * @return \HomeBundle\Entity\TipoPrenda 
+     */
+    public function getTipoPrenda()
+    {
+        return $this->tipoPrenda;
+    }
+
+    
+    
+    
+    /**
+     * Set tipoPrenda
+     *
+     * @param \HomeBundle\Entity\TipoPrenda $tipoPrenda
+     * @return Prenda
+     */
+    public function setTipoPrenda(\HomeBundle\Entity\TipoPrenda $tipoPrenda = null)
+    {
+        $this->tipoPrenda = $tipoPrenda;
+
+        return $this;
+    }
+}

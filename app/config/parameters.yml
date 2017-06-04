@@ -1,0 +1,25 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: symfony
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: a7c443abee9a17bea153c9a79b07ab4da84fb814
+
+#configuration on jbsb92.com server
+#parameters:
+#    database_host: 107.180.51.83
+#    database_port: null
+#    database_name: s22
+#    database_user: Martin22
+#    database_password: Martin22
+#    mailer_transport: smtp
+#    mailer_host: 127.0.0.1
+#    mailer_user: null
+#    mailer_password: null
+#    secret: a7c443abee9a17bea153c9a79b07ab4da84fb814

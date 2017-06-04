@@ -1,0 +1,65 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+    {{ parent() }}
+    <div class="caja">
+        <h1>Atchivos existentes en el directorio</h1>
+    </div>
+    <div class="caja">
+        <form method="post" action="{{path('index_music24')}}" enctype="multipart/form-data">
+            <h1>Subiendo Archivos</h1>
+            <input type="file" name="archivo" /><br />
+            <input type="submit" value="Subir Archivo" name="boton" />
+        </form>
+    </div>
+    <div id="tw">
+        Tw
+    </div>
+
+
+
+
+    {#    <div class="main container">
+        <div class="row well">
+            <div class="col-md-4">
+                <center>
+                    <div class="page-header">
+                        <h2>{% trans %}NEON{% endtrans %}</h2>
+                    </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td><label style="width: 80px;">{% trans %}Username{% endtrans %}</label>
+                                <td colspan="2"><input style="width: 180px;" type="text" id="userInputLogin" placeholder="Username" />
+                            <tr>
+                                <td><label style="width: 80px;">{% trans %}First Name{% endtrans %}</label>
+                                <td colspan="2"><input style="width: 180px;" type="text" id="userInputLogin" placeholder="First Name" />
+                            <tr>
+                                <td><label style="width: 80px;">{% trans %}Last Name{% endtrans %}</label>
+                                <td colspan="2"><input style="width: 180px;" type="text" id="userInputLogin" placeholder="Last Name" />
+                            <tr>
+                                <td><label style="width: 80px;">{% trans %}Email{% endtrans %}</label>
+                                <td colspan="2"><input style="width: 180px;" type="text" id="userInputLogin" placeholder="Email" />
+                            <tr>
+                                <td><label style="width: 80px;">{% trans %}Password{% endtrans %}</label>
+                                <td colspan="2"><input style="width: 180px;" type="text" id="passwordInputTextLogin" placeholder="Password" />
+                            <tr>
+                                <td colspan="3"><br>
+                            <tr>
+                                <td>
+                                <td>
+                                <td align="right">
+                                    <form class="form-horizontal" method="post" action="{{path('index_logIn')}}">
+                                        <input type="submit" value="Log in" id="loginInputSubmitLogin">
+                                    </form>
+                                </td>
+                            <tr>
+                                <td colspan="3"><br>
+                            </tr>
+                        </table>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>#}
+{% endblock %}
+

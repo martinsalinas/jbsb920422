@@ -1,0 +1,590 @@
+{{ form_start(form3, { 'attr' : {'novalidate': 'novalidate', 'role' : 'form', 'id': id3|default('form')} }) }}
+
+                                                
+{#<div class="modal fade addClothing2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">#}
+<div {#class="modal-dialog"#} role="document"  style="background-color: white;">
+{#    <div class="modal-content">#}
+        {#<div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+            <center><h4 class="modal-title" id="gridSystemModalLabel">EDIT</h4></center>
+        </div>#}
+        <div class="modal-body">
+            <div class="form-group">
+                <center>
+                <table border="0">
+                    <tr>
+                        <td align="right">
+                            <input type="text" id="idTxtClothType" placeholder="jbSB92" style="width: 100%; height: 30px"/>
+                        <td width="10px">
+                        <td align="left">
+                            <a style="background-color: purple; border-color: purple;" class="btn btn-sm btn-success batpf glyphicon glyphicon-plus" onclick="addClothTypeName();">
+                                {# ADICIONAR TIPO PRENDA BOTON CHULITO #}
+                            </a>
+                        </td>
+                    <tr>
+                        <td>
+                            <span class="text-danger">{{ form_errors(form3.name) }}</span>
+                        </td>
+                    </tr>
+                </table>
+                </center>
+            </div>
+
+            <div class="panel panel-default">
+
+                <!-- Table -->
+{#                <table class="table table-striped table-hover table-tipo-prendas-neon">
+                    <thead>
+                        <tr>
+                            <th width="90%">
+                                {{ ('NAME') }}
+                            </th>
+                            <th width="10%">
+                                {{ ('ACTIONS') }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>#}
+
+                <div class="panel-group div-tipo-prenda-neon" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default" id="menu-prenda">
+                        
+                        {% for clothesTypes in clothType %}
+                            <div class="panel-heading" role="tab" id="headingTipoPrenda{{ clothesTypes.id }}">
+                                <table width="100%" border="0">
+                                    <tr data-id3 = "{{ clothesTypes.id }}">
+                                        <td{# width="80%"#}>
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTipoPrenda{{ clothesTypes.id }}" class="tipoPrendaLinkAccordion" aria-expanded="true" aria-controls="collapseTipoPrenda{{ clothesTypes.id }}">
+                                                {{ clothesTypes.name }}
+                                            </a>
+                                        <td width="40 px" align="right">
+                                            <a href="#collapseExample{{ clothesTypes.id }}" class="btn glyphicon glyphicon-pencil boton-agregar-tipoPrenda-neon boton-agregar-tipoPrenda-neon{{ clothesTypes.id }}" id="boton-agregar-tipoPrenda{{ clothesTypes.id }}" style="display:none"
+                                                role="button" aria-expanded="false" aria-controls="collapseExample" data-toggle="collapse">
+                                                {# adicionar #}
+                                            </a>
+                                        <td width="40 px" align="right" data-id={{ clothesTypes.id }}>
+                                            <a href="#" class="btn glyphicon glyphicon-remove boton-eliminar-tipoPrenda-neon" onclick="eliminarTipoPrenda({{ clothesTypes.id }});">
+                                                {#  x  #}
+                                            </a>
+                                        </td>
+                                        
+                                        
+{#                                        <td width="10%" align="right" data-id={{ tipoPrendas.id }}>#}
+{#                                            <a href="#" class="btn glyphicon glyphicon-remove boton-eliminar-tipoPrenda-neon" onclick="eliminarTipoPrenda({{ tipoPrendas.id }});">#}
+                                                {#  x  #}
+{#                                            </a>#}
+{#                                        </td>#}
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="collapseTipoPrenda{{ clothesTypes.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTipoPrenda{{ clothesTypes.id }}">
+                                <div class="panel-body">
+
+                                    {#desde aqui empieza el submenu#}
+                                        <div class="panel-group div-prenda-neon" id="accordion2" role="tablist" aria-multiselectable="true">
+                                            <div class="panel panel-default">
+                                                <div class="collapse" id="collapseExample{{ clothesTypes.id }}">
+
+{#                                                    katy perry#}
+                                                    <table width='100%' data-id56="{{ clothesTypes.id }}" border="0">
+                                                        <tr>
+                                                            <td>
+                                                                <input type="text" name="txtPrenda" id="idTxtNombrePrenda{{ clothesTypes.id }}" placeholder="Nombre de la Prenda" style="width:100%; height:30px">
+                                                            <td width="10px">
+                                                            <td width="37px" align=right>
+                                                                <a class="btn btn-sm btn-success bapf glyphicon glyphicon-ok">
+
+                                                                </a>
+                                                            </td>
+                                                        <tr>
+                                                            <td colspan='3'>
+                                                                <br>
+                                                            </td>
+                                                        <tr>
+                                                            <td colspan='3'>
+                                                                <textarea rows="3" placeholder="What's up22?" required style="width:100%;" id="idTxtDescripcionPrenda{{ clothesTypes.id }}"></textarea>
+                                                            </td>
+                                                        <tr>
+                                                            <td colspan="3">
+                                                                <div class="areaTres">
+                                                                    <div class="draggableClass areaUno draggable">
+                                                                        <table border="2" id="despiecePrenda" {#style="visibility: hidden;"#}>
+                                                                            <tr>
+                                                                                <td width="20%" height="100%">
+                                                                                    <span class="glyphicon glyphicon-remove btn" style="float: left;">
+
+                                                                                    </span>
+                                                                                <td width="80%" height="100%">
+                                                                                    {#                                                                                    <input type="text" name="txtPrenda" id="idTxtNombrePrenda{{ tipoPrendas.id }}" placeholder="Nombre del despiece" style="float: right; width: 100%;" rows="5">#}
+                                                                                    <textarea rows="3" placeholder="class='draggableClass areaUno draggable'" required style="width:100%; height: 100%; resize: none;" id="idTxtDescripcionPrenda{{ clothesTypes.id }}"></textarea>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="contenedor" 
+                                                                     style="background-color: blue; 
+                                                                     height: 300px; 
+                                                                     position: relative; ">
+
+                                                                    <div class="areaDos droppableClass" 
+                                                                         style="float: left; 
+                                                                         overflow: scroll; 
+                                                                         height: 100%; 
+                                                                         width: 50%;">
+                                                                    </div>
+
+                                                                    <div style="float: left; background-color: greenyellow; 
+                                                                         width: 50%; position: initial; top: 0; bottom: 0; 
+                                                                         overflow: scroll; height: 300px;">
+
+                                                                        <div class="containmentWrapper"
+                                                                             style="height: 100%; width: 100%;">
+                                                                            
+                                                                            <div class="draggable2 resizableCutting" 
+                                                                                 style="opacity: 0.1; background-color: blue; border: black; ">
+                                                                                <p>XXXXX</p>
+                                                                            </div>
+
+                                                                            <div class="draggable2 resizableCutting" id="callejero" 
+                                                                                 style="opacity: 0.9; background-color: blue; border: black; "
+                                                                                 onclick="document.getElementById('callejero').style.backgroundColor = '#dad';">
+                                                                                <p>XXXXX</p>
+                                                                            </div>
+
+                                                                            <div class="draggable2 resizableCutting" 
+                                                                                 style="opacity: 0.1; background-color: blue; border: black; ">
+                                                                                <p>XXXXX</p>
+                                                                            </div>
+                                                                            
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
+                                                </div>
+
+                                                <hr>
+
+{#                                                <p>sh22</p>#}
+
+
+                                                
+                                                <div class="div-prenda-neon{{ clothesTypes.id }}">
+                                                    {% for clothes in cloth %}
+                                                        {% if(clothesTypes.id == clothes.clothType) %}
+                                                            {#titulo#}
+                                                            <div class="panel-heading" role="tab" id="headingPrenda{{ clothes.id }}">
+                                                                <table class="table table-striped table-hover table-prendas-neon">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapsePrenda{{ clothes.id }}" aria-expanded="true" aria-controls="collapsePrenda{{ clothes.id }}">
+                                                                                    {{ clothes.name }}
+                                                                                </a>
+                                                                            </td>
+                                                                            <td class="actions" width="4%">
+                                                                                <a href="#" class="glyphicon glyphicon-ok boton-agregar-prenda-neon">
+                                                                                    {# chulito #}
+                                                                                </a>
+                                                                            </td>
+                                                                            <td class="actions" width="4%" data-id="{{ clothes.id }}" data-id2="{{ clothesTypes.id }}">
+                                                                                <a href="#" class="glyphicon glyphicon-remove boton-eliminar-prenda-neon" onclick="eliminarPrenda({{ clothes.id }}, {{ clothesTypes.id }});">
+                                                                                    {# equis  #}
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            {#contenido#}
+                                                            <div id="collapsePrenda{{ clothes.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPrenda{{ clothes.id }}">
+                                                                <div class="panel-body">
+                                                                    <table class="table table-striped table-hover table-prendas-neon">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td colspan="3">
+                                                                                    {{ clothes.description }}
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                                
+{#                                                <p>sh22</p>#}
+                                                
+                                                
+                                                
+                                                
+                                                
+                                            </div>
+                                        </div>                                    
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+{#    </div>#}
+</div>
+
+
+<div style="visibility: hidden;">{{ form_widget(form3.name, { 'attr' : {'class' : 'form-control',
+                        'placeholder' : 'Cloth type name', 'disabled' : 'disabled'} }) }}</div>
+
+{#</div>#}
+{{ form_end(form3) }}
+
+
+
+
+
+
+<script>
+
+    {#        var form = $('#adicionar-tipo-prenda');
+            var url = form.attr('action');
+            var data = form.serialize();
+
+            var idTxtTipoPrenda = document.getElementById('idTxtTipoPrenda').value;
+
+            $.post(url, {ejemploVariable: idTxtTipoPrenda}, function (data)
+            {
+                $(".div-tipo-prenda-neon").load("refrescarTableTipoPrenda");
+
+            }).fail(function () {
+
+                alert("ERROR");
+            });#}
+
+                function addClothTypeName() {
+                    var form = $('#add-cloth-type');
+                    var url = form.attr('action');
+                    var data = form.serialize();
+
+                    var idTxtClothType = document.getElementById('idTxtClothType').value;
+
+                    $.post(url, {exampleVariable: idTxtClothType}, function (data)
+                    {
+                        
+                        var varClothType_id = (data[0].clothType_id);
+                        var varClothType_name = (data[0].clothType_name);
+                        
+                              $("#menu-prenda").append(
+                            '<div class="panel-heading" role="tab" id="headingTipoPrenda' + varClothType_id + '">'+
+                                '<table width="100%" border="0">'+
+                                    '<tr data-id3 = "' + varClothType_id + '">'+
+                                        '<td{# width="80%"#}>'+
+                                            '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTipoPrenda' + varClothType_id + '" class="tipoPrendaLinkAccordion" aria-expanded="true" aria-controls="collapseTipoPrenda' + varClothType_id + '" onclick="habilitarBotonAgregarPrenda(' + varClothType_id + ');">'+
+                                                varClothType_name +
+                                            '</a>'+
+                                        '<td width="40 px" align="right">'+
+                                            '<a href="#collapseExample' + varClothType_id + '" class="btn glyphicon glyphicon-pencil boton-agregar-tipoPrenda-neon boton-agregar-tipoPrenda-neon' + varClothType_id + '" id="boton-agregar-tipoPrenda' + varClothType_id + '" style="display:none"'+
+                                                'role="button" aria-expanded="false" aria-controls="collapseExample" data-toggle="collapse">'+
+                                                {# adicionar #}
+                                            '</a>'+                                            
+                                        '<td width="40 px" align="right" data-id=' + varClothType_id + '>'+
+                                            '<a href="#" class="btn glyphicon glyphicon-remove boton-eliminar-tipoPrenda-neon" onclick="eliminarTipoPrenda(' + varClothType_id + ');">'+
+                                                {#  x  #}
+                                            '</a>'+
+                                        '</td>'+
+                                    '</tr>'+
+                                '</table>'+
+                            '</div>'+
+            '<div id="collapseTipoPrenda' + varClothType_id + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTipoPrenda' + varClothType_id + '">'+
+                                '<div class="panel-body">'+
+
+                                    {#desde aqui empieza el submenu#}
+                                    '<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">'+
+                                        '<div class="panel panel-default">'+
+
+
+
+
+                                            '<div class="collapse" id="collapseExample' + varClothType_id + '">'+
+
+{#                                                    katy perry#}
+                                                    '<table width="100%" data-id56="' + varClothType_id + '" border="0">'+
+                                                        '<tr>'+
+                                                            '<td>'+
+                                                                '<input type="text" name="txtPrenda" id="idTxtNombrePrenda' + varClothType_id + '" placeholder="Nombre de la Prenda" style="width:100%; height:30px">'+
+                                                            '<td width="10px">'+
+                                                            '<td width="37px" align=right>'+
+                                                                '<a class="btn btn-sm btn-success bapf glyphicon glyphicon-ok">'+
+
+                                                                '</a>'+
+                                                            '</td>'+
+                                                        '<tr>'+
+                                                            '<td colspan="3">'+
+                                                                '<br>'+
+                                                            '</td>'+
+                                                        '<tr>'+
+                                                            '<td colspan="3">'+
+                                                                '<textarea rows="3" placeholder="Whats up22?" required style="width:100%;" id="idTxtDescripcionPrenda' + varClothType_id + '"></textarea>'+
+                                                            '</td>'+
+                                                        '<tr>'+
+                                                            '<td colspan="3">'+
+                                                                '<div class="areaTres">'+
+                                                                    '<div class="draggableClass areaUno draggable">'+
+                                                                        '<table border="2" id="despiecePrenda" {#style="visibility: hidden;"#}>'+
+                                                                            '<tr>'+
+                                                                                '<td width="20%" height="100%">'+
+                                                                                    '<span class="glyphicon glyphicon-remove btn" style="float: left;">'+
+
+                                                                                    '</span>'+
+                                                                                '<td width="80%" height="100%">'+
+                                                                                    {#                                                                                    <input type="text" name="txtPrenda" id="idTxtNombrePrenda{{ tipoPrendas.id }}" placeholder="Nombre del despiece" style="float: right; width: 100%;" rows="5">#}
+                                                                                    '<textarea rows="3" placeholder=" " class="draggableClass areaUno draggable" required style="width:100%; height: 100%; resize: none;" id="idTxtDescripcionPrenda' + varClothType_id + '"></textarea>'+
+                                                                                '</td>'+
+                                                                            '</tr>'+
+                                                                        '</table>'+
+                                                                    '</div>'+
+                                                                '</div>'+
+                                                                '<div class="contenedor" '+
+                                                                     'style="background-color: blue; '+
+                                                                     'height: 300px; '+
+                                                                     'position: relative; ">'+
+
+                                                                    '<div class="areaDos droppableClass" '+
+                                                                         'style="float: left; '+
+                                                                         'overflow: scroll; '+
+                                                                         'height: 100%; '+
+                                                                         'width: 50%;">'+
+                                                                    '</div>'+
+
+                                                                    '<div style="float: left; background-color: greenyellow; '+
+                                                                         'width: 50%; position: initial; top: 0; bottom: 0; '+
+                                                                         'overflow: scroll; height: 300px;">'+
+
+                                                                        '<div class="containmentWrapper"'+
+                                                                             'style="height: 100%; width: 100%;">'+
+                                                                            
+                                                                            '<div class="draggable2 resizableCutting" '+
+                                                                                 'style="opacity: 0.1; background-color: blue; border: black; ">'+
+                                                                                '<p>XXXXX</p>'+
+                                                                            '</div>'+
+
+                                                                            '<div class="draggable2 resizableCutting" id="callejero" '+
+                                                                                 'style="opacity: 0.9; background-color: blue; border: black; "'+
+                                                                                 "onclick="+"document.getElementById('callejero').style.backgroundColor = '#dad';"+">"+
+                                                                                '<p>XXXXX</p>'+
+                                                                            '</div>'+
+
+                                                                            '<div class="draggable2 resizableCutting" '+
+                                                                                "style='opacity: 0.1; background-color: blue; border: black; '>"+
+                                                                                '<p>XXXXX</p>'+
+                                                                            '</div>'+
+                                                                            
+                                                                        '</div>'+
+
+
+                                                                    '</div>'+
+                                                                '</div>'+
+                                                            '</td>'+
+                                                        '</tr>'+
+                                                    '</table>'+
+
+                                                '</div>'+
+
+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>');
+    {#                        $("#menu-prenda").append('<option value="' + data.id + '" selected="selected">' + data.nombre + '</option>');#}
+    {#                        $(".div-tipo-prenda-neon").load("refrescarTableTipoPrenda");#}
+    {#                        alert("Ready for the good times");#}
+        
+        
+            }).fail(function () {
+                alert("ERROR");
+            });
+        }
+        
+
+    function eliminarTipoPrenda(idTipoPrenda) {
+        {#var form = $('#eliminar-tipo-prenda');
+        var url = form.attr('action');
+        $.post(url, {idTipoPrenda: idTipoPrenda, apellido: "grillo2"}, function (result)
+        {
+            $.post("refrescarTableTipoPrenda", function (htmlExterno) {
+                $(".div-tipo-prenda-neon").html(htmlExterno);
+            });
+        }).fail(function () {
+            alert('ERROR, NO FUNCIONA');
+        });#}
+                alert("Este lo dejamos para después, ya que esta acción no es importante");
+    }   
+</script>
+
+<script>
+
+    var contador = 0;
+    var idAnterior = 0;
+    $(".tipoPrendaLinkAccordion").click(function ()
+    {
+        var tipoPrenda = $(this).parents('tr');
+        var idActual = tipoPrenda.data('id3');
+
+        habilitarBotonAgregarPrenda(idActual);
+    });
+
+    function habilitarBotonAgregarPrenda(idActual)
+    {
+        
+        console.log(idActual);
+        contador++;
+
+        if (idAnterior == idActual)
+        {
+            // se ha dado click sobre el mismo boton
+
+            if (contador % 2 == 0)
+            {
+                // expandido
+                document.getElementById("boton-agregar-tipoPrenda" + idActual).style.display = 'inline';
+            } else
+            {
+                // recogido
+                document.getElementById("boton-agregar-tipoPrenda" + idActual).style.display = 'none';
+            }
+        } else
+        {
+            if (idAnterior == 0)
+            {
+                // primera vez que se da click sobre cualquier boton de adicionar prenda
+
+                contador = 0;
+
+                if (contador % 2 == 0)
+                {
+                    // expandido
+                    document.getElementById("boton-agregar-tipoPrenda" + idActual).style.display = 'inline';
+                } else
+                {
+                    // recogido
+                    document.getElementById("boton-agregar-tipoPrenda" + idActual).style.display = 'none';
+                }
+            } else
+            {
+                contador = 0;
+
+                // borrar el boton del idAnterior
+                document.getElementById("boton-agregar-tipoPrenda" + idAnterior).style.display = 'none';
+
+                if (contador % 2 == 0)
+                {
+                    // expandido
+                    document.getElementById("boton-agregar-tipoPrenda" + idActual).style.display = 'inline';
+                } else
+                {
+                    // recogido
+                    document.getElementById("boton-agregar-tipoPrenda" + idActual).style.display = 'none';
+                }
+            }
+        }
+        idAnterior = idActual;
+    }
+</script>
+
+<script>
+    $(function () {
+        $(".droppableClass").sortable({
+
+        });
+
+        $(".areaUno, .areaDos, .areaTres").disableSelection();
+        $(".draggable").draggable({
+
+        });
+        $(".draggable2").draggable({
+            containment: ".containmentWrapper",
+            scroll: false
+        });
+    {#        $(".resizableSlideBar").resizable({
+                grid: [1, 1],
+                maxHeight: 300,
+                maxWidth: 500,
+                minHeight: 0,
+                minWidth: 0
+            });#}
+                    $(".resizable").resizable({
+                        maxHeight: 700,
+                        maxWidth: 200,
+                        minHeight: 100,
+                        minWidth: 200
+                    });
+                    $(".resizableCutting").resizable({
+                        maxHeight: 800,
+                        maxWidth: 800,
+                        minHeight: 50,
+                        minWidth: 50,
+                        aspectRatio: 16 / 9,
+                        animate: true
+                    });
+
+{#                    function cambiarAspecto(){
+                        $(".callejero").style.backgroundColor = "red";
+                    }#}
+                    
+{#
+            );#}
+    
+    
+});
+
+
+    $(".draggableClass").click(function (){
+{#        document.getElementById('despiecePrenda').style.visibility = "visible";#}
+        
+        $(this).addClass("felicidad");
+        alert("REPENT!");
+        
+    });
+    $(".areaUno").click(function (){
+        console.log("This is an example");
+    });
+    $(".draggable").click(function (){
+        console.log("This is an example22");
+    });
+    
+    $(".felicidad").click(function (){
+        alert("REPENT22!");
+    });
+
+   
+
+        $(".draggableClass").draggable({
+            connectToSortable: ".droppableClass",
+            helper: "clone",
+            revert: "invalid"
+            {#$(".callejero").style.backgroundColor = "red";#}
+        });
+
+{#    var ElementoObtenido = document.getElementsByClassName("callejero");
+    
+                        $(".callejero").click( function () {
+                            alert("2222");
+            
+                            ElementoObtenido.style.backgroundColor = "white";
+                        });#}
+</script>
+
+<script>
+    $('.bapf').click(function () {
+        alert("swish");
+    });
+</script>
